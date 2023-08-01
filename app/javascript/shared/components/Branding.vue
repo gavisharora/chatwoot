@@ -1,21 +1,9 @@
 <template>
-  <div
-    v-if="globalConfig.brandName && !disableBranding"
-    class="px-0 py-3 flex justify-center"
-  >
-    <a
-      :href="brandRedirectURL"
-      rel="noreferrer noopener nofollow"
-      target="_blank"
-      class="branding--link justify-center"
-    >
-      <img
-        class="branding--image"
-        :alt="globalConfig.brandName"
-        :src="globalConfig.logoThumbnail"
-      />
+  <div v-if="globalConfig.brandName && !disableBranding" class="px-0 py-3 flex justify-center">
+    <a :href="brandRedirectURL" rel="noreferrer noopener nofollow" target="_blank" class="branding--link justify-center">
+      <img class="branding--image" :alt="globalConfig.brandName" :src="globalConfig.logoThumbnail" />
       <span>
-        {{ useInstallationName($t('POWERED_BY'), "xPath Labs") }} 
+        {{ useInstallationName($t('POWERED_BY'), globalConfig.brandName) }}
       </span>
     </a>
   </div>
@@ -42,9 +30,9 @@ export default {
   data() {
     return {
       globalConfig: {
-        brandName,
+        brandName: "xPath Labs",
         logoThumbnail,
-        widgetBrandURL,
+        widgetBrandURL: 'https://www.xpathlabs.com'
       },
     };
   },
@@ -52,9 +40,8 @@ export default {
     brandRedirectURL() {
       try {
         const referrerHost = this.$store.getters['appConfig/getReferrerHost'];
-        const baseURL = `${this.globalConfig.widgetBrandURL}?utm_source=${
-          referrerHost ? 'widget_branding' : 'survey_branding'
-        }`;
+        const baseURL = `${this.globalConfig.widgetBrandURL}?utm_source=${referrerHost ? 'widget_branding' : 'survey_branding'
+          }`;
         if (referrerHost) {
           return `${baseURL}&utm_referrer=${referrerHost}`;
         }
