@@ -8,10 +8,13 @@
   value: '/brand-assets/logo.svg'
 - name: BRAND_URL
   value: 'https://www.xpathlabs.com'
+  locked: false
 - name: WIDGET_BRAND_URL
   value: 'https://www.xpathlabs.com'
+  locked: false
 - name: BRAND_NAME
   value: 'xPath Labs'
+  locked: false
 - name: TERMS_URL
   value: 'https://www.chatwoot.com/terms-of-service'
 - name: PRIVACY_URL
